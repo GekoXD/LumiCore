@@ -29,7 +29,7 @@ public class coregrave implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        boolean generarTumba = this.plugin.getConfig().getBoolean("generar-tumba", true);
+        boolean generarTumba = this.plugin.getConfig().getBoolean("generate-grave", true);
 
         if (!generarTumba) {
             return;
@@ -79,10 +79,10 @@ public class coregrave implements Listener {
 
         if (signBlock.getState() instanceof Sign) {
             Sign sign = (Sign) signBlock.getState();
-            String linea1 = this.plugin.getConfig().getString("linea-1");
-            String linea2 = this.plugin.getConfig().getString("linea-2");
-            String linea3 = this.plugin.getConfig().getString("linea-3");
-            String linea4 = this.plugin.getConfig().getString("linea-4");
+            String linea1 = this.plugin.getConfig().getString("line-1");
+            String linea2 = this.plugin.getConfig().getString("line-2");
+            String linea3 = this.plugin.getConfig().getString("line-3");
+            String linea4 = this.plugin.getConfig().getString("line-4");
 
             // Linea 1 # Linea 0
             if (linea1 != null) {
@@ -90,7 +90,7 @@ public class coregrave implements Listener {
                 Date currentDate = new Date();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formattedDate = dateFormat.format(currentDate);
-                linea1 = linea1.replace("%fecha%", formattedDate);
+                linea1 = linea1.replace("%date%", formattedDate);
                 linea1 = linea1.replace("%player%", event.getEntity().getName());
             }
 
@@ -101,7 +101,7 @@ public class coregrave implements Listener {
                 Date currentDate = new Date();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formattedDate = dateFormat.format(currentDate);
-                linea2 = linea2.replace("%fecha%", formattedDate);
+                linea2 = linea2.replace("%date%", formattedDate);
                 linea2 = linea2.replace("%player%", event.getEntity().getName());
             }
 
@@ -112,7 +112,7 @@ public class coregrave implements Listener {
                 Date currentDate = new Date();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formattedDate = dateFormat.format(currentDate);
-                linea3 = linea3.replace("%fecha%", formattedDate);
+                linea3 = linea3.replace("%date%", formattedDate);
                 linea3 = linea3.replace("%player%", event.getEntity().getName());
             }
 
@@ -123,7 +123,7 @@ public class coregrave implements Listener {
                 Date currentDate = new Date();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formattedDate = dateFormat.format(currentDate);
-                linea4 = linea4.replace("%fecha%", formattedDate);
+                linea4 = linea4.replace("%date%", formattedDate);
                 linea4 = linea4.replace("%player%", event.getEntity().getName());
             }
 

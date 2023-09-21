@@ -52,7 +52,7 @@ public final class LumiCore extends JavaPlugin {
         getCommand("lc").setExecutor(new LSCommand(this));
         getCommand("lc").setTabCompleter(new LSCommandTabCompleter());
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
-        this.consolemessage.sendMessage("§6§lLumiCore §a| Luminary Minecraft Studio | Iniciando Plugin");
+        this.consolemessage.sendMessage("§6§lLumiCore §a| Starting Plugin");
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
         this.CheckUpdate();
     }
@@ -69,7 +69,7 @@ public final class LumiCore extends JavaPlugin {
     @Override
     public void onDisable() {
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
-        this.consolemessage.sendMessage("§6§lLumiCore §7| Luminary Minecraft Studio | Apagando Plugin");
+        this.consolemessage.sendMessage("§6§lLumiCore §7| Turning off Plugin");
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
     }
 
@@ -81,11 +81,11 @@ public final class LumiCore extends JavaPlugin {
                 con.setReadTimeout(timed_out);
                 this.latestversion = (new BufferedReader(new InputStreamReader(con.getInputStream()))).readLine();
                 if (this.latestversion.length() <= 7 && !this.version.equals(this.latestversion)) {
-                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §6Hay una nueva version disponible. (§fv" + this.latestversion + "§6)");
-                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §2Puedes descargarla en: §7https://www.spigotmc.org/resources/112734/");
+                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §6There is a new version available. (§fv" + this.latestversion + "§6)");
+                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §2You can download it at: §7https://www.spigotmc.org/resources/112734/");
                 }
             } catch (Exception var3) {
-                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §cError tratando de buscar una nueva version.");
+                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §cError trying to check for updates.");
             }
 
         }

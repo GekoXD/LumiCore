@@ -64,7 +64,7 @@ public class coredeath implements Listener {
         String muerteMessage = this.plugin.getConfig().getString("chat-actionbar-death");
         if (muerteMessage != null) {
             muerteMessage = PlaceholderAPI.setPlaceholders(player, muerteMessage);
-            muerteMessage = muerteMessage.replace("%muerte_causa%", e.getDeathMessage());
+            muerteMessage = muerteMessage.replace("%death_cause%", e.getDeathMessage());
             TextComponent actionMessage = new TextComponent(ChatColor.translateAlternateColorCodes('&', muerteMessage));
 
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {

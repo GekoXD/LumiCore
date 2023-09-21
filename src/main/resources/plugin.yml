@@ -1,15 +1,15 @@
 name: LumiCore
-version: '1.0.0'
+version: '1.0.1'
 main: main.lumicore.LumiCore
 author: Luminary Minecraft Studio
 website: https://discord.luminarystudio.xyz
 api-version: '1.17'
 authors: [GekoXD]
-description: Plugin LumiCore creado a base de el core de luminary, Utilizado actualmente en Container Hardcore 2
+description: LumiCore is a highly configurable plugin that adds tombstones upon death, custom messages
 commands:
   lc:
     description: Comando Principal de indice
-    usage: Comando incompleto porfavor pon el comando completo. /lc <subcomando>
+    usage: Incomplete command please enter the complete command. /lc <subcomando>
     permission: luminarycore.admin
     aliases:
       - lc

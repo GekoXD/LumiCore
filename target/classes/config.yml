@@ -1,0 +1,53 @@
+# Configuración de LumiCore (compatible con PlaceholderAPI)
+
+# Mensaje de Totem
+totem-message: '&6&lLumiCore &8&l>> &7El jugador %player% &7ha consumido un &6Totem De La Inmortalidad &7Causa: %causa%'
+
+# Causas del Totem
+messages:
+  FALL: 'Caida'
+  FIRE: 'Fuego'
+  LAVA: 'Lava'
+  DROWNING: 'Ahogamiento'
+  DRAGON_BREATH: 'Aliento de Dragón'
+  SONIC_BOOM: 'Ataque sonico de Warden'
+  PLAYER: 'Jugador'
+  WITHER: 'Efecto Wither'
+  WORLD_BORDER: 'Borde del Mundo'
+  SUFFOCATION: 'Sofocacion'
+  STARVATION: 'Hambre'
+  LIGHTNING: 'Rayo'
+  PRIMED_TNT: 'Explosion'
+  BLOCK_EXPLOSION: 'Explosion'
+  FIREBALL: 'Bola de Fuego'
+  MAGIC: 'Magia'
+  POISON: 'Veneno'
+  ENDER_PEARL: 'Daño por Ender Pearl'
+  UNKNOWN: 'Custom'
+  CUSTOM: 'Custom'
+
+# Mensaje de la tumba en el cartel
+linea-1: '&7&lR.I.P'
+linea-2: '%player%'
+linea-3: '%fecha%'
+linea-4: '&a...'
+
+# Mensajes al entrar y salir del servidor
+join-message: '&a%player% Entro al Servidor'
+leave-message: '&7%player% Salio del Servidor'
+
+# Mensaje de muerte en la action_bar
+chat-actionbar-death: '&b&l%muerte_causa%'
+
+# Configuración adicional
+
+generar-tumba: true
+
+# Muerte personalizada, espectador y mensaje de la actionbar
+custom-death: true
+
+# Enviar mensajes al chat cuando alguien consume un totem
+totem-use: true
+
+# Estos son los mensajes personalizados de entrada y salida al servidor, si deseas usar los mensajes de Minecraft por defecto, configura esto como "false"
+custom-join-and-leave: true

@@ -1,0 +1,15 @@
+name: LumiCore
+version: '1.0.0'
+main: main.lumicore.LumiCore
+author: Luminary Minecraft Studio
+website: https://discord.luminarystudio.xyz
+api-version: '1.17'
+authors: [GekoXD]
+description: Plugin LumiCore creado a base de el core de luminary, Utilizado actualmente en Container Hardcore 2
+commands:
+  lc:
+    description: Comando Principal de indice
+    usage: Comando incompleto porfavor pon el comando completo. /lc <subcomando>
+    permission: luminarycore.admin
+    aliases:
+      - lc

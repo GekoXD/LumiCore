@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LumiCore:jar">
+    <output-path>$USER_HOME$/Downloads</output-path>
+    <root id="archive" name="LumiCore.jar">
+      <element id="module-output" name="LumiCore" />
+    </root>
+  </artifact>
+</component>

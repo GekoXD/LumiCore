@@ -75,7 +75,7 @@ public final class LumiCore extends JavaPlugin {
 
         public void CheckUpdate () {
             try {
-                HttpURLConnection con = (HttpURLConnection) (new URL("https://api.spigotmc.org/legacy/update.php?resource=112734&t=1632283927")).openConnection();
+                HttpURLConnection con = (HttpURLConnection) (new URL("api.spigotmc.org/legacy/update.php?resource=112734")).openConnection();
                 int timed_out = 5000;
                 con.setConnectTimeout(timed_out);
                 con.setReadTimeout(timed_out);

@@ -16,18 +16,40 @@ public class LSCommandTabCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            completions.add("animation");
-            completions.add("reload");
+            for (String option : new String[]{"animation", "reload", "config"}) {
+                if (option.startsWith(args[0].toLowerCase())) {
+                    completions.add(option);
+                }
+            }
+        } else if (args.length == 2 && args[0].equalsIgnoreCase("config")) {
+            for (String option : new String[]{"generate-grave", "totem-use", "custom-death", "custom-join-and-leave"}) {
+                if (option.startsWith(args[1].toLowerCase())) {
+                    completions.add(option);
+                }
+            }
+        } else if (args.length == 3 && args[0].equalsIgnoreCase("config")) {
+            String option = args[1].toLowerCase();
+            for (String value : new String[]{"true", "false"}) {
+                if (value.startsWith(args[2].toLowerCase()) && (option.equals("generate-grave") || option.equals("totem-use") || option.equals("custom-death") || option.equals("custom-join-and-leave"))) {
+                    completions.add(value);
+                }
+            }
         } else if (args.length == 2 && args[0].equalsIgnoreCase("animation")) {
-            completions.add("@a");
             for (Player player : Bukkit.getOnlinePlayers()) {
-                completions.add(player.getName());
+                String playerName = player.getName();
+                if (playerName.toLowerCase().startsWith(args[1].toLowerCase())) {
+                    completions.add(playerName);
+                }
+            }
+            if ("@a".startsWith(args[1].toLowerCase())) {
+                completions.add("@a");
             }
         } else if (args.length == 3 && args[0].equalsIgnoreCase("animation")) {
-            completions.add("TOTEM_RESURRECT");
-            completions.add("HURT");
-            completions.add("TELEPORT_ENDER");
-            completions.add("THORNS_HURT");
+            for (String effect : new String[]{"TOTEM_RESURRECT", "HURT", "TELEPORT_ENDER", "THORNS_HURT"}) {
+                if (effect.startsWith(args[2].toUpperCase())) {
+                    completions.add(effect);
+                }
+            }
         }
 
         return completions;

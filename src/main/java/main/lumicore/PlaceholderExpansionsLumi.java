@@ -8,17 +8,17 @@ public class PlaceholderExpansionsLumi extends PlaceholderExpansion {
 
     @Override
     public String getIdentifier() {
-        return "lumicore"; // Cambia esto por el identificador de tu plugin
+        return "lumicore";
     }
 
     @Override
     public String getAuthor() {
-        return "GekoXD"; // Cambia esto por tu nombre
+        return "GekoXD";
     }
 
     @Override
     public String getVersion() {
-        return "1.0.0"; // Cambia esto por la versión de tu plugin
+        return "1.0.2";
     }
 
     @Override
@@ -27,9 +27,8 @@ public class PlaceholderExpansionsLumi extends PlaceholderExpansion {
             return "";
         }
 
-        // Aquí puedes manejar los placeholders y devolver el resultado deseado
         if (params.equals("version")) {
-            return "LumiCore Version: 1.0";
+            return "LumiCore Version: 1.0.2";
         }
 
         return null; // Devuelve null si el placeholder no está definido

@@ -52,7 +52,7 @@ public final class LumiCore extends JavaPlugin {
         getCommand("lc").setExecutor(new LSCommand(this));
         getCommand("lc").setTabCompleter(new LSCommandTabCompleter());
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
-        this.consolemessage.sendMessage("§6§lLumiCore §a| Starting Plugin");
+        this.consolemessage.sendMessage("§6§lLumiCore §7| §aStarting Plugin");
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
         this.CheckUpdate();
     }

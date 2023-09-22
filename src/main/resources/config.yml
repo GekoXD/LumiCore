@@ -5,44 +5,40 @@ totem-message: '&6&lLumiCore &8&l>> &7The player %player% &7has consumed a &6Imm
 
 # Causes of the Totem
 messages:
-FALL: 'Fall'
-FIRE: 'Fire'
-LAVA: 'Lava'
-DROWNING: 'Drowning'
-DRAGON_BREATH: 'Dragon Breath'
-SONIC_BOOM: 'Warden Sonic Attack'
-PLAYER: 'Player'
-WITHER: 'Wither Effect'
-WORLD_BORDER: 'World Border'
-SUFFOCATION: 'Suffocation'
-STARVATION: 'Starvation'
-LIGHTNING: 'Lightning'
-PRIMED_TNT: 'Explosion'
-BLOCK_EXPLOSION: 'Explosion'
-FIREBALL: 'Fireball'
-MAGIC: 'Magic'
-POISON: 'Poison'
-ENDER_PEARL: 'Ender Pearl Damage'
-UNKNOWN: 'Custom'
-CUSTOM: 'Custom'
-
+  FALL: 'Fall'
+  FIRE: 'Fire'
+  LAVA: 'Lava'
+  DROWNING: 'Drowning'
+  DRAGON_BREATH: 'Dragon Breath'
+  SONIC_BOOM: 'Warden Sonic Attack'
+  PLAYER: 'Player'
+  WITHER: 'Wither Effect'
+  WORLD_BORDER: 'World Border'
+  SUFFOCATION: 'Suffocation'
+  STARVATION: 'Starvation'
+  LIGHTNING: 'Lightning'
+  PRIMED_TNT: 'Explosion'
+  BLOCK_EXPLOSION: 'Explosion'
+  FIREBALL: 'Fireball'
+  MAGIC: 'Magic'
+  POISON: 'Poison'
+  ENDER_PEARL: 'Ender Pearl Damage'
+  UNKNOWN: 'Custom'
+  CUSTOM: 'Custom'
 
 # Tomb message on the poster
-
 line-1: '&7&lR.I.P'
 line-2: '%player%'
 line-3: '%date%'
-line-4: '&a...'
+line-4: '&0....'
 
 # Messages when entering and leaving the server
 join-message: '&a%player% joined the server'
 leave-message: '&7%player% left the server'
 
-# Death message in action_bar
+# Death message in action_bar and time of the actiobar_bar
 chat-actionbar-death: '&b&l%death_cause%'
-
-# Additional settings
-
+chat-actionbar-time: 1
 
 # Generate grave upon death
 generate-grave: true

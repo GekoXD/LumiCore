@@ -5,7 +5,12 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.io.File;
+import java.io.IOException;
 
 public class LSCommand implements CommandExecutor {
 
@@ -26,6 +31,7 @@ public class LSCommand implements CommandExecutor {
             sender.sendMessage("§6§lLumiCore §cIncomplete command. Command list:");
             sender.sendMessage("§6/lc reload");
             sender.sendMessage("§6/lc animation <player/@a> <animation>");
+            sender.sendMessage("§6/lc config <config> <true/false>");
             return true;
         }
 
@@ -56,6 +62,36 @@ public class LSCommand implements CommandExecutor {
             // Recargar la configuración
             plugin.reloadConfig();
             sender.sendMessage(ChatColor.GREEN + "§6§lLumiCore §aConfiguration reloaded successfully.");
+        } else if (args[0].equalsIgnoreCase("config")) {
+            if (args.length == 3) {
+                String option = args[1].toLowerCase();
+                if (option.equals("generate-grave") || option.equals("totem-use") || option.equals("custom-death") || option.equals("custom-join-and-leave")) {
+                    String input = args[2].toLowerCase();
+                    if (input.equals("true") || input.equals("false")) {
+                        File configFile = new File(plugin.getDataFolder(), "config.yml");
+                        FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
+
+                        config.set(option, Boolean.parseBoolean(input));
+
+                        try {
+                            config.save(configFile);
+                            plugin.reloadConfig();
+                            sender.sendMessage("§6§lLumiCore §a" + option + " set to " + input + ".");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            sender.sendMessage("§6§lLumiCore §cError al guardar la configuración.");
+                        }
+
+                        return true;
+                    } else {
+                        sender.sendMessage("§6§lLumiCore §cInvalid value. Use 'true' or 'false' for " + option + ".");
+                    }
+                } else {
+                    sender.sendMessage("§6§lLumiCore §cInvalid option. Use 'generate-grave', 'totem-use', 'custom-death', or 'custom-join-and-leave'.");
+                }
+            } else {
+                sender.sendMessage("§6§lLumiCore §cIncomplete command for config. Use '/lc config <option> <true/false>'.");
+            }
         } else {
             sender.sendMessage("§6§lLumiCore §cIncomplete command. Command list:");
             sender.sendMessage("§6/lc reload");

@@ -34,6 +34,13 @@ public final class LumiCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            this.consolemessage.sendMessage("§cLumiCore >> §4[Warning] §cPlaceholderAPI is not installed. This plugin relies on PlaceholderAPI for optimal functionality.");
+        } else {
+
+        }
+
         plugin = this;
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -73,20 +80,23 @@ public final class LumiCore extends JavaPlugin {
         this.consolemessage.sendMessage("§7---------------------------------------------------------");
     }
 
-        public void CheckUpdate () {
-            try {
-                HttpURLConnection con = (HttpURLConnection) (new URL("api.spigotmc.org/legacy/update.php?resource=112734")).openConnection();
-                int timed_out = 5000;
-                con.setConnectTimeout(timed_out);
-                con.setReadTimeout(timed_out);
-                this.latestversion = (new BufferedReader(new InputStreamReader(con.getInputStream()))).readLine();
-                if (this.latestversion.length() <= 7 && !this.version.equals(this.latestversion)) {
-                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §6There is a new version available. (§fv" + this.latestversion + "§6)");
-                    Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §2You can download it at: §7https://www.spigotmc.org/resources/112734/");
-                }
-            } catch (Exception var3) {
-                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §cError trying to check for updates.");
-            }
+    public void CheckUpdate() {
+        try {
+            HttpURLConnection con = (HttpURLConnection) (new URL("https://api.spigotmc.org/legacy/update.php?resource=112734")).openConnection();
+            int timed_out = 5000;
+            con.setConnectTimeout(timed_out);
+            con.setReadTimeout(timed_out);
+            this.latestversion = (new BufferedReader(new InputStreamReader(con.getInputStream()))).readLine();
 
+            // Comprobar si la versión actual es igual a la versión mas reciente
+            if (this.version.equals(this.latestversion)) {
+                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §aYou have the latest version. (v" + this.latestversion + ")");
+            } else if (this.latestversion.length() <= 7) {
+                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §6There is a new version available. (v" + this.latestversion + ")");
+                Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §2You can download it at: §7https://www.spigotmc.org/resources/112734/");
+            }
+        } catch (Exception var3) {
+            Bukkit.getConsoleSender().sendMessage("§6§lLumiCore §cError trying to check for updates.");
         }
     }
+}

@@ -1,10 +1,10 @@
 name: LumiCore
-version: '1.0.2'
+version: '1.0.3'
 main: main.lumicore.LumiCore
-author: Luminary Minecraft Studio
+author: GekoXD
 website: https://discord.luminarystudio.xyz
 api-version: '1.17'
-authors: [GekoXD]
+softdepend: [PlaceholderAPI]
 description: LumiCore is a highly configurable plugin that adds tombstones upon death, custom messages
 commands:
   lc:

@@ -18,7 +18,7 @@ public class PlaceholderExpansionsLumi extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "1.0.2";
+        return "1.0.3";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PlaceholderExpansionsLumi extends PlaceholderExpansion {
         }
 
         if (params.equals("version")) {
-            return "LumiCore Version: 1.0.2";
+            return "LumiCore Version: 1.0.3";
         }
 
         return null; // Devuelve null si el placeholder no está definido

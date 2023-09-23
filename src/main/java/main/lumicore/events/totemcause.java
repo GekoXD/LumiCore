@@ -4,6 +4,7 @@ import main.lumicore.LumiCore;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -13,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,21 +87,29 @@ public class totemcause implements Listener {
 
     @EventHandler
     public void onTotemUse(EntityResurrectEvent event) {
-        boolean totemMensajes = this.plugin.getConfig().getBoolean("totem-use", true);
-
-        if (!totemMensajes) {
-            return;
-        }
-
         if (event.getEntity() instanceof Player) {
+            boolean totemMensajes = this.plugin.getConfig().getBoolean("totem-use", true);
+
+            if (!totemMensajes) {
+                return;
+            }
+
             Player player = (Player) event.getEntity();
+
+            // Verificar si el jugador está realmente siendo resucitado por un totem
+            ItemStack mainHandItem = player.getInventory().getItemInMainHand();
+            ItemStack offHandItem = player.getInventory().getItemInOffHand();
+            if (!(mainHandItem.getType() == Material.TOTEM_OF_UNDYING || offHandItem.getType() == Material.TOTEM_OF_UNDYING)) {
+                return;
+            }
+
             String damageCause = lastDamageCauses.get(player);
 
-            // Conseguir el config.yml
+            // Obtener el config.yml
             this.plugin.reloadConfig(); // Asegurarse de que la configuración esté recargada
             String totemmessage = this.plugin.getConfig().getString("totem-message");
             if (totemmessage != null) {
-                totemmessage = totemmessage.replace("%player%", event.getEntity().getName());
+                totemmessage = totemmessage.replace("%player%", player.getName());
 
                 if (damageCause != null) {
                     totemmessage = totemmessage.replace("%causa%", damageCause);
@@ -107,7 +117,7 @@ public class totemcause implements Listener {
                     totemmessage = totemmessage.replace("%causa%", "Desconocida"); // O alguna cadena predeterminada
                 }
 
-                Entity damager = event.getEntity(); // Obtener la entidad que fue resucitada (el jugador)
+                Entity damager = player; // Obtener la entidad que fue resucitada (el jugador)
                 if (damageCause != null && !damageCause.equalsIgnoreCase("Desconocida")) {
                     // Realizar el reemplazo de placeholders solo si el dañador no es un mob renombrado
                     if (!(damager instanceof Player) || ((Player) damager).getDisplayName().equals(damager.getName())) {
@@ -120,5 +130,3 @@ public class totemcause implements Listener {
         }
     }
 }
-
-

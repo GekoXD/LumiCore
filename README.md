@@ -1,2 +1,2 @@
 # LumiCore
-Codigo Fuente de mi plugin LumiCore, por si lo necesitas :)
+https://www.spigotmc.org/resources/lumicore.112734/

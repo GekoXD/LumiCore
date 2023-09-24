@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -99,33 +100,52 @@ public class totemcause implements Listener {
             // Verificar si el jugador está realmente siendo resucitado por un totem
             ItemStack mainHandItem = player.getInventory().getItemInMainHand();
             ItemStack offHandItem = player.getInventory().getItemInOffHand();
-            if (!(mainHandItem.getType() == Material.TOTEM_OF_UNDYING || offHandItem.getType() == Material.TOTEM_OF_UNDYING)) {
-                return;
+            ItemStack usedTotem = null;
+
+            if (mainHandItem.getType() == Material.TOTEM_OF_UNDYING) {
+                usedTotem = mainHandItem;
+            } else if (offHandItem.getType() == Material.TOTEM_OF_UNDYING) {
+                usedTotem = offHandItem;
+            }
+
+            if (usedTotem == null) {
+                return; // El jugador no está usando un totem
             }
 
             String damageCause = lastDamageCauses.get(player);
 
-            // Obtener el config.yml
-            this.plugin.reloadConfig(); // Asegurarse de que la configuración esté recargada
-            String totemmessage = this.plugin.getConfig().getString("totem-message");
-            if (totemmessage != null) {
-                totemmessage = totemmessage.replace("%player%", player.getName());
+            // Obtener el Custom Model Data del ítem de totem
+            ItemMeta totemMeta = usedTotem.getItemMeta();
+            int customModelData = -1;
+
+            if (totemMeta != null && totemMeta.hasCustomModelData()) {
+                customModelData = totemMeta.getCustomModelData();
+            }
+
+            String message;
+            if (customModelData != -1 && plugin.getConfig().contains("custom-model-totems." + customModelData)) {
+                message = plugin.getConfig().getString("custom-model-totems." + customModelData + ".message");
+            } else {
+                message = plugin.getConfig().getString("totem-message");
+            }
+
+            if (message != null) {
+                message = message.replace("%player%", player.getName());
 
                 if (damageCause != null) {
-                    totemmessage = totemmessage.replace("%causa%", damageCause);
+                    message = message.replace("%causa%", damageCause);
                 } else {
-                    totemmessage = totemmessage.replace("%causa%", "Desconocida"); // O alguna cadena predeterminada
+                    message = message.replace("%causa%", "Desconocida"); // O alguna cadena predeterminada
                 }
 
                 Entity damager = player; // Obtener la entidad que fue resucitada (el jugador)
                 if (damageCause != null && !damageCause.equalsIgnoreCase("Desconocida")) {
-                    // Realizar el reemplazo de placeholders solo si el dañador no es un mob renombrado
                     if (!(damager instanceof Player) || ((Player) damager).getDisplayName().equals(damager.getName())) {
-                        totemmessage = PlaceholderAPI.setPlaceholders(player, totemmessage);
+                        message = PlaceholderAPI.setPlaceholders(player, message);
                     }
                 }
 
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', totemmessage));
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
             }
         }
     }

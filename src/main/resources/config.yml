@@ -1,7 +1,15 @@
 # LumiCore configuration (PlaceholderAPI supported)
 
 # Totem Message
+# This message will be used if a player uses a custom model data totem that is not on the list or is a vanilla totem
 totem-message: '&6&lLumiCore &8&l>> &7The player %player% &7has consumed a &6Immortality Totem &7Cause: %causa%'
+
+# Custom Model Data Totems
+custom-model-totems:
+  1:
+    message: '&6&lLumiCore &8&l>> &7The player %player% &7has consumed a &6Immortality Totem Custom Model Data 1 &7Cause: %causa%'
+  2:
+    message: '&6&lLumiCore &8&l>> &7The player %player% &7has consumed a &6LOL Totem Custom Model Data 2 &7Cause: %causa%'
 
 # Causes of the Totem
 messages:
